@@ -1,0 +1,6 @@
+Iniciando a aplicação.
+Conexão com o banco de dados estabelecida.
+Processo finalizado com sucesso.
+Iniciando a aplicação.
+Conexão com o banco de dados estabelecida.
+Processo finalizado com sucesso.
