@@ -1,19 +1,35 @@
 package org.example.usuarioAtivo;
 
-//TODO: Problema - O sistema age como se os dois usuários estivessem logados ao mesmo tempo,
-// o que não faz sentido num contexto de usuário único ativo.
 
+//Eu usei o padrão Singleton na classe Usuario para garantir que apenas um usuário fique logado por vez.
+//Tornei o construtor privado e criei o método getInstance(), que cria o usuário só se ainda não existir.
+//Também adicionei um método logout() para permitir trocar de usuário. No Main, usei getInstance()
+// em vez de new para manter apenas uma instância ativa.
 
 public class Usuario {
 
+    private static Usuario instanciaUnica;
 
     private String nome;
 
-    public Usuario(String nome) {
+    private Usuario(String nome) {
         this.nome = nome;
+    }
+
+    public static Usuario getInstance(String nome) {
+        if (instanciaUnica == null) {
+            instanciaUnica = new Usuario(nome);
+        } else {
+            System.out.println("Já existe um usuário logado: " + instanciaUnica.nome);
+        }
+        return instanciaUnica;
     }
 
     public void exibirInformacoes() {
         System.out.println("Usuário logado: " + nome);
+    }
+
+    public static void logout() {
+        instanciaUnica = null;
     }
 }
